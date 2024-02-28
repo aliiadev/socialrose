@@ -1,4 +1,7 @@
-import SHeader from "./SHeader";
+import dynamic from "next/dynamic";
+import SFooter from "./SFooter";
+const SHeader = dynamic(() => import("./SHeader"), { ssr: false });
+
 
 function SLayout({
 	children,
@@ -11,6 +14,7 @@ function SLayout({
 			<main className="p-4">
 				{children}
 			</main>
+			<SFooter />
 		</>
 	);
 }

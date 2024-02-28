@@ -25,10 +25,12 @@
     "@mantine/hooks": "7.6.0",
     "@next/bundle-analyzer": "^14.0.1",
     "@tabler/icons-react": "^2.47.0",
+    "clsx": "^2.1.0",
     "next": "14.0.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "sass": "^1.71.1"
+    "sass": "^1.71.1",
+    "usehooks-ts": "^2.15.1"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",

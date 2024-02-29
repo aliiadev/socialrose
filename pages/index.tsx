@@ -4,6 +4,7 @@ import { NextPageWithLayout } from "@/types/page";
 import { Accordion, ActionIcon, Avatar, BackgroundImage, Badge, Button, Card, Center, Container, Divider, Group, Image, Menu, NavLink, NumberFormatter, Text, Title, rem } from "@mantine/core";
 import { IconArrowDown, IconArrowRight, IconArrowUp, IconClipboardCopy, IconDeviceTabletHeart, IconEdit, IconEye, IconHeartDown, IconHeartUp, IconHome, IconMask, IconMessage, IconMessageCircle, IconMessageDots, IconShare, IconShare3 } from "@tabler/icons-react";
 import { Utils } from "@/utils";
+import SButtonIcon from "@/components/layout/SButtonIcon";
 
 
 const topLst = [
@@ -207,22 +208,16 @@ const Page: NextPageWithLayout = () => {
 												</Group>
 												<Group gap={'xs'}>
 													<Group gap={2}>
-														<ActionIcon c={'gray'} variant="subtle">
-															<IconEye />
-														</ActionIcon>
+														<SButtonIcon p={0} icon={<IconEye />} />
 														<Text fw={500} c={'gray'} size="xs">1500</Text>
 													</Group>
 													<Group gap={2}>
-														<ActionIcon c={'gray'} variant="subtle">
-															<IconMessageCircle />
-														</ActionIcon>
+														<SButtonIcon p={0} icon={<IconMessageCircle />} />
 														<Text fw={500} c={'gray'} size="xs">50+</Text>
 													</Group>
 													<Menu shadow="md" width={200}>
 														<Menu.Target>
-															<ActionIcon c={'gray'} variant="subtle">
-																<IconShare3 />
-															</ActionIcon>
+															<SButtonIcon p={0} icon={<IconShare3 />} />
 														</Menu.Target>
 
 														<Menu.Dropdown>
@@ -234,9 +229,7 @@ const Page: NextPageWithLayout = () => {
 															</Menu.Item>
 														</Menu.Dropdown>
 													</Menu>
-													<ActionIcon c={'gray'} variant="subtle">
-														<IconDeviceTabletHeart />
-													</ActionIcon>
+													<SButtonIcon p={0} icon={<IconDeviceTabletHeart />} />
 												</Group>
 											</div>
 										</div>

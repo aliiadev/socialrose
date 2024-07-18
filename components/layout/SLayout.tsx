@@ -1,8 +1,8 @@
 import dynamic from 'next/dynamic';
 import React from 'react';
-import SFooter from './SFooter';
+import { SFooter } from './SFooter';
 
-const SHeader = dynamic(() => import('./SHeader'), { ssr: false });
+const SHeader = dynamic(() => import('./SHeader').then((mod) => mod.SHeader), { ssr: false });
 
 function SLayout({
   children,
@@ -20,4 +20,4 @@ function SLayout({
   );
 }
 
-export default SLayout;
+export { SLayout };

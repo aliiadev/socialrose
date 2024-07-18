@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import { Container } from '@mantine/core';
-import SLayout from '@/components/layout/SLayout';
+import { SLayout } from '@/components/layout/SLayout';
 import { NextPageWithLayout } from '@/types/page';
 
 const Page: NextPageWithLayout = () => (

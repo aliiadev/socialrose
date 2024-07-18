@@ -40,4 +40,4 @@ function SFooter() {
   );
 }
 
-export default SFooter;
+export { SFooter };

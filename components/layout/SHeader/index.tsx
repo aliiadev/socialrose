@@ -30,7 +30,7 @@ import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { useElementSize, useOnClickOutside, useToggle } from 'usehooks-ts';
 import classNames from 'classnames';
-import SButtonIcon from '../SButtonIcon';
+import { SButtonIcon } from '../SButtonIcon';
 import { Utils } from '@/utils';
 import { originalSurfer } from '@/theme';
 
@@ -170,4 +170,4 @@ function SHeader() {
   );
 }
 
-export default SHeader;
+export { SHeader };

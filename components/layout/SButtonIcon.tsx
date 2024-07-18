@@ -19,4 +19,4 @@ const SButtonIcon =
     </UnstyledButton>
 );
 
-export default SButtonIcon;
+export { SButtonIcon };

@@ -28,4 +28,4 @@ const SBubbleContent = ({
   </div>
 );
 
-export default SBubbleContent;
+export { SBubbleContent };

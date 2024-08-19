@@ -1,4 +1,4 @@
-import './index.css';
+import './index.scss';
 import '@mantine/core/styles.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
@@ -20,7 +20,7 @@ export default function App(props: AppPropsWithLayout) {
 	return (
 		<MantineProvider theme={theme}>
 			<Head>
-				<title>Social Rose</title>
+				<title>JxOne</title>
 				<meta
 					name="viewport"
 					content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"

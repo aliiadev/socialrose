@@ -1,24 +1,12 @@
 import { originalSurfer } from '@/theme';
 import { Utils } from '@/utils';
-import { ActionIcon, Avatar, CloseButton, ColorSwatch, Divider, Group, Indicator, Menu, Popover, Select, Text, TextInput, Title, UnstyledButton } from '@mantine/core';
-import { IconArrowUp, IconBell, IconChevronDown, IconChevronUp, IconFlame, IconMapPin, IconMessage, IconReport, IconSearch, IconSettings, IconSettings2, IconShoppingBag, IconUserCircle, IconWashPress } from "@tabler/icons-react";
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { useElementSize, useOnClickOutside, useToggle } from 'usehooks-ts';
-import SButtonIcon from '../SButtonIcon';
-import classNames from 'classnames';
-
-const categorySearch: string[] = [
-	'All criteria', 'News', 'Forum', 'Product', 'Services', 'Business account', 'Personal account'
-]
-
-const historySearch: string[] = [
-	'Restaurant in Hanoi', 'Travel in Vietnam', 'What is Pho?', 'The old'
-]
-
-const hashTags = [
-	{ type: 1, tag: 'Vietnam' }, { type: 1, tag: 'Pho ngon' }, { type: 2, tag: 'Pho' }, { type: 1, tag: 'HoChiMinh' }
-]
+import { Col, Row } from 'react-bootstrap';
+import { IoIosSearch, IoIosClose } from 'react-icons/io'
+import { FaSearch, FaBars, FaRegLightbulb } from 'react-icons/fa'
+import styles from '@/styles/layout/_header.module.scss';
 
 function SHeader() {
 
@@ -36,110 +24,38 @@ function SHeader() {
 
 	useOnClickOutside(historyDropdownRef, handleClickHistoryOutside)
 
+	// id={is_show_mobile?'header':undefined}
+
 	return (
-		<header className="py-4 px-2 border-b border-[#DBDBDB]">
-			<div className="grid grid-cols-4 items-center gap-4">
-				<Title onClick={() => router.push('/')} className={classNames(originalSurfer.className, 'cursor-pointer')} c={'violet'} fw={'bold'} order={1}>Rose</Title>
-				<Popover width={width} opened={isOpenHistory}>
-					<Popover.Target>
-						<div ref={searchRef} className="border border-[#DBDBDB] flex rounded-xl px-2 col-span-2">
-							<Select
-								variant="unstyled"
-								rightSection={<IconChevronDown />}
-								data={categorySearch}
-								placeholder={categorySearch[0]}
-							/>
-							<TextInput
-								className="w-full"
-								variant="unstyled"
-								placeholder="Search news"
-								rightSection={<IconSearch />}
-								onFocus={toggleHistory}
-							/>
+		<header className={styles.header} style={{ backgroundImage: `url(${Utils.generateUrlImage('bg_header.jpg')})`, }}>
+			<div className={"container"}>
+				<Row className={'items-center'}>
+					<Col md={3} sm={4} xs={5}>
+						<div className={styles.navHeader}>
+							<a>
+								<img src={Utils.generateUrlImage('logo.png')} alt={'logo'} />
+							</a>
 						</div>
-					</Popover.Target>
-					<Popover.Dropdown ref={historyDropdownRef} p={'md'}>
-						<div className='flex justify-between'>
-							<Text size='sm'>History</Text>
-							<UnstyledButton>
-								<Text fw={500} size='sm' c={'blue'}>Clear all</Text>
-							</UnstyledButton>
+					</Col>
+					<Col md={4} className={styles.display}>
+						<div ref={historyDropdownRef} className={styles.wrapperSearch}>
+							<input className={styles.inputSearch} placeholder={'Tìm truyện...'} />
+							<IoIosSearch className={styles.iconWrapperSearch} size={20} />
+							{/* <ItemSearch data={data}/> */}
 						</div>
-						<div className='py-2'>
-							{
-								historySearch.map((el, index) => (
-									<div key={index} className='p-2 flex justify-between hover:bg-[#F3F0F6] rounded-md items-center'>
-										<Group>
-											<ColorSwatch size={8} color='#828C97' />
-											<Text>{el}</Text>
-										</Group>
-										<CloseButton />
-									</div>
-								))
-							}
+					</Col>
+					<Col md={2} sm={4} xs={4} className={styles.light_chat}>
+						<div className="dark-mode-switch">
+							<FaRegLightbulb size={24} type="checkbox" className={styles.light} id="theme-toggle" />
 						</div>
-						<Text size='sm'>Trending hashtag</Text>
-						<div className='py-2'>
-							{
-								hashTags.map((el, index) => (
-									<div className='p-2 flex hover:bg-[#F3F0F6] rounded-md items-center' key={index}>
-										<Group>
-											{el.type === 2 ? <IconArrowUp size={'1rem'} color='blue' /> : <IconFlame size={'1rem'} color='red' />}
-											<Text>{`#${el.tag}`}</Text>
-										</Group>
-									</div>
-								))
-							}
+					</Col>
+					<Col md={0} sm={4} xs={3}>
+						<div className={styles.responsive_search}>
+							<div><FaSearch size={23} className={styles.iconSearch} /></div>
+							<div className={styles.bar}><FaBars size={23}/></div>
 						</div>
-					</Popover.Dropdown>
-				</Popover>
-				<div className="flex items-center gap-2 justify-end">
-					<SButtonIcon p={0} c={'dark'} icon={<IconMessage onClick={() => router.push('/messages/k')} />} />
-					<SButtonIcon p={0} c={'dark'} icon={<IconBell />} />
-					<SButtonIcon p={0} c={'dark'} icon={<IconShoppingBag />} />
-					<Divider orientation="vertical" />
-
-					<Menu shadow="md" width={280}>
-						<Menu.Target>
-							<Group gap={'xs'}>
-								<Avatar src={Utils.generateRemoteUrlImage('home_fr_avatar.png')} radius={'md'} size={'md'} />
-								<Group gap={4}>
-									<Text size='sm'>Dark Meow</Text>
-									<SButtonIcon icon={<IconChevronDown size={'1rem'} />} />
-								</Group>
-							</Group>
-						</Menu.Target>
-
-						<Menu.Dropdown p={'md'}>
-							<Menu.Item>
-								<Group>
-									<Avatar src={Utils.generateRemoteUrlImage('home_fr_avatar.png')} radius={'xl'} size={'sm'} />
-									<div>
-										<Text fw={'bold'}>Dark Meow</Text>
-										<Text c={'violet'}>Premium account</Text>
-									</div>
-								</Group>
-							</Menu.Item>
-							<Divider my={'sm'} />
-							<Menu.Item c={'gray'} leftSection={<IconUserCircle />}>
-								<Text c={'dark'} size='sm' fw={500}>My profile</Text>
-							</Menu.Item>
-							<Menu.Item c={'gray'} leftSection={<IconWashPress />}>
-								<Text c={'dark'} size='sm' fw={500}>Upgrade premium</Text>
-							</Menu.Item>
-							<Divider my={'sm'} />
-							<Menu.Item c={'gray'} leftSection={<IconReport />}>
-								<Text c={'dark'} size='sm' fw={500}>Feedback</Text>
-							</Menu.Item>
-							<Menu.Item c={'gray'} leftSection={<IconMapPin />}>
-								<Text c={'dark'} size='sm' fw={500}>Shipping address</Text>
-							</Menu.Item>
-							<Menu.Item c={'gray'} leftSection={<IconSettings2 />}>
-								<Text c={'dark'} size='sm' fw={500}>Settings</Text>
-							</Menu.Item>
-						</Menu.Dropdown>
-					</Menu>
-				</div>
+					</Col>
+				</Row>
 			</div>
 		</header>
 	);
